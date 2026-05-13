@@ -8,6 +8,63 @@ const CHECKOUT_URL = "https://sonothing.lemonsqueezy.com/checkout/buy/your-produ
 const PRODUCT_PRICE = "$79"
 const PRODUCT_NAME = "SoNothing HRM Admin Template"
 
+const dashboardBullets = [
+  "Live KPI cards: headcount, people on leave, open roles, pending leave approvals.",
+  "Headcount trend and department breakdown — chart-ready layout using mock series.",
+  "Recent activity feed plus employee spotlight with deep links into profiles.",
+] as const
+
+const hrmFeatures = [
+  {
+    title: "Dashboard",
+    href: "/dashboard",
+    tag: "Overview",
+    desc: "Executive snapshot with metrics, trends, and HR activity so stakeholders see signal at a glance.",
+  },
+  {
+    title: "Employees",
+    href: "/employees",
+    tag: "Directory",
+    desc: "Sortable directory, status badges, and rich profile pages for manager hierarchy and contact info.",
+  },
+  {
+    title: "Organization",
+    href: "/organization",
+    tag: "Structure",
+    desc: "Department cards with descriptions, headcount, and member chips — ideal for org planning demos.",
+  },
+  {
+    title: "Leave",
+    href: "/leave",
+    tag: "Time off",
+    desc: "Balance readouts, request form, and approval list patterns with local-only mutations for walkthroughs.",
+  },
+  {
+    title: "Attendance",
+    href: "/attendance",
+    tag: "Time",
+    desc: "Monthly grid with check-in/out controls wired to client state — swap for your clocking API later.",
+  },
+  {
+    title: "Payroll",
+    href: "/payroll",
+    tag: "Compensation",
+    desc: "Payslip table and detail breakdown screens with currency formatting (illustrative numbers only).",
+  },
+  {
+    title: "Recruiting",
+    href: "/recruiting",
+    tag: "Hiring",
+    desc: "Stage-based pipeline with role filter and per-candidate stage controls for hiring manager UX.",
+  },
+  {
+    title: "Settings",
+    href: "/settings",
+    tag: "Workspace",
+    desc: "Company profile fields and notification toggles persisted in sessionStorage to show preferences UI.",
+  },
+] as const
+
 const highlights = [
   {
     title: "Mock-first architecture",
@@ -60,6 +117,104 @@ function FadeUp({
   )
 }
 
+function DashboardMockup() {
+  const bars = [40, 65, 55, 72, 88].map((h, i) => (
+    <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
+      <div
+        className="w-full max-w-[20px] rounded-sm bg-gradient-to-t from-cyan-500/40 to-violet-500/50"
+        style={{ height: `${h}%` }}
+      />
+      <span className="text-[8px] text-zinc-600">{["J", "F", "M", "A", "M"][i]}</span>
+    </div>
+  ))
+
+  return (
+    <div
+      className="relative overflow-hidden rounded-2xl border border-white/[0.12] shadow-2xl"
+      style={{
+        background: "linear-gradient(165deg, #111113 0%, #0a0a0c 50%, #0d0d10 100%)",
+        boxShadow: "0 0 0 1px rgba(255,255,255,0.04), 0 24px 80px rgba(0,0,0,0.55)",
+      }}
+    >
+      <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-violet-500/10 blur-3xl" />
+
+      <div className="relative flex h-[min(420px,70vw)] max-h-[440px] min-h-[320px]">
+        {/* Sidebar */}
+        <div className="hidden w-[22%] max-w-[140px] shrink-0 flex-col border-r border-white/[0.06] bg-[#080809] sm:flex">
+          <div className="flex items-center gap-2 border-b border-white/[0.06] px-3 py-3">
+            <span
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[10px] font-bold text-[#0a0a0a]"
+              style={{ background: "linear-gradient(135deg, #22d3ee, #a855f7)" }}
+            >
+              HR
+            </span>
+          </div>
+          <div className="flex flex-1 flex-col gap-1 p-2">
+            {["Overview", "People", "Org", "Leave", "Time"].map((label, i) => (
+              <div
+                key={label}
+                className={`rounded-md px-2 py-1.5 text-[10px] font-medium ${
+                  i === 0 ? "bg-white/10 text-zinc-100" : "text-zinc-600"
+                }`}
+              >
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main */}
+        <div className="flex min-w-0 flex-1 flex-col">
+          <div className="flex h-10 items-center justify-between border-b border-white/[0.06] bg-[#0a0a0a]/80 px-3 sm:px-4">
+            <span className="truncate text-[11px] font-medium text-zinc-400">Dashboard</span>
+            <div className="flex gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-zinc-700" />
+              <span className="h-2 w-2 rounded-full bg-zinc-700" />
+            </div>
+          </div>
+          <div className="flex flex-1 flex-col gap-3 overflow-hidden p-3 sm:gap-4 sm:p-4">
+            <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+              {[
+                { label: "Headcount", value: "7", sub: "active" },
+                { label: "On leave", value: "1", sub: "today" },
+                { label: "Open roles", value: "3", sub: "hiring" },
+                { label: "Pending leave", value: "2", sub: "approvals" },
+              ].map((k) => (
+                <div
+                  key={k.label}
+                  className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-2 sm:px-3 sm:py-2.5"
+                >
+                  <p className="text-[9px] font-medium uppercase tracking-wide text-zinc-500">{k.label}</p>
+                  <p className="mt-0.5 text-lg font-semibold tabular-nums text-zinc-100 sm:text-xl">{k.value}</p>
+                  <p className="text-[9px] text-zinc-600">{k.sub}</p>
+                </div>
+              ))}
+            </div>
+            <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-5">
+              <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 lg:col-span-3">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-zinc-500">Headcount trend</p>
+                <div className="mt-3 flex h-24 items-end gap-1 sm:h-28">{bars}</div>
+              </div>
+              <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 lg:col-span-2">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-zinc-500">Activity</p>
+                <ul className="mt-3 space-y-2">
+                  {["Leave approved · Aisha", "Payroll run · April", "Review cycle opened"].map((t) => (
+                    <li key={t} className="flex gap-2 text-[10px] text-zinc-400">
+                      <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/80" />
+                      <span className="leading-snug">{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function BuyButton({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizeClasses = {
     sm: "px-4 py-2 text-[12px]",
@@ -105,8 +260,14 @@ export function HrmLanding() {
             <span className="ml-2 text-[11px] font-normal uppercase tracking-[0.18em] text-zinc-500">HRM</span>
           </Link>
           <nav className="hidden items-center gap-6 text-[13px] text-zinc-400 sm:flex">
+            <Link href="#dashboard" className="hover:text-zinc-100">
+              Dashboard
+            </Link>
+            <Link href="#features" className="hover:text-zinc-100">
+              HRM features
+            </Link>
             <Link href="#modules" className="hover:text-zinc-100">
-              Modules
+              For devs
             </Link>
             <Link href="#faq" className="hover:text-zinc-100">
               FAQ
@@ -162,17 +323,102 @@ export function HrmLanding() {
               </Link>
             </div>
             <p className="mt-6 text-[12px] text-zinc-600">Secure checkout · ZIP / repo handoff · Documentation included</p>
+            <p className="mt-10 text-[12px] text-zinc-600">
+              <Link href="#dashboard" className="text-zinc-400 underline-offset-4 hover:text-zinc-200 hover:underline">
+                Preview the dashboard layout ↓
+              </Link>
+            </p>
           </motion.div>
+        </section>
+
+        <section id="dashboard" className="scroll-mt-16 border-t border-white/[0.06] px-5 py-20 sm:px-10">
+          <div className="mx-auto max-w-6xl">
+            <FadeUp className="mb-10 text-center lg:mb-12">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">Product preview</p>
+              <h2 className="mt-2 text-2xl font-semibold text-zinc-50 sm:text-3xl">Dashboard your buyers recognize</h2>
+              <p className="mx-auto mt-2 max-w-2xl text-sm text-zinc-500">
+                The live app ships the same shell: sidebar navigation, sticky top bar, and overview widgets driven by
+                mock APIs. Below is a stylized preview; open the demo for real data and navigation.
+              </p>
+            </FadeUp>
+
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
+              <FadeUp className="lg:col-span-5" delay={0.05}>
+                <ul className="space-y-4 text-left">
+                  {dashboardBullets.map((line) => (
+                    <li key={line} className="flex gap-3 text-sm text-zinc-400">
+                      <span
+                        className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-[#0a0a0a]"
+                        style={{ background: "linear-gradient(135deg, #22d3ee, #a855f7)" }}
+                      >
+                        ✓
+                      </span>
+                      <span className="leading-relaxed">{line}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/dashboard"
+                    className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-[13px] font-semibold text-zinc-100 transition hover:bg-white/[0.1]"
+                  >
+                    Open live dashboard
+                  </Link>
+                  <Link
+                    href="/login"
+                    className="inline-flex items-center justify-center text-[13px] text-zinc-500 underline-offset-4 hover:text-zinc-300 hover:underline"
+                  >
+                    Start from sign-in screen →
+                  </Link>
+                </div>
+              </FadeUp>
+              <FadeUp className="lg:col-span-7" delay={0.1}>
+                <DashboardMockup />
+              </FadeUp>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="scroll-mt-16 border-t border-white/[0.06] px-5 py-20 sm:px-10">
+          <div className="mx-auto max-w-6xl">
+            <FadeUp className="mb-10 text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">Full HRM surface area</p>
+              <h2 className="mt-2 text-2xl font-semibold text-zinc-50 sm:text-3xl">Every core module, mocked and linked</h2>
+              <p className="mx-auto mt-2 max-w-2xl text-sm text-zinc-500">
+                Eight first-class routes mirror what teams expect from an HR admin product. Click through on the hosted
+                demo — no backend required for the UI pass.
+              </p>
+            </FadeUp>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {hrmFeatures.map((f, i) => (
+                <FadeUp key={f.title} delay={i * 0.04}>
+                  <Link
+                    href={f.href}
+                    className="group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-[#0c0c0d] p-5 transition hover:border-cyan-500/25 hover:bg-[#0e0e10]"
+                  >
+                    <span className="inline-flex w-fit rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-cyan-300/90">
+                      {f.tag}
+                    </span>
+                    <h3 className="mt-3 text-[15px] font-semibold text-zinc-100 group-hover:text-white">{f.title}</h3>
+                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-zinc-500">{f.desc}</p>
+                    <span className="mt-4 text-[12px] font-medium text-cyan-400/90 group-hover:text-cyan-300">
+                      View in app →
+                    </span>
+                  </Link>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section id="modules" className="scroll-mt-16 border-t border-white/[0.06] px-5 py-20 sm:px-10">
           <div className="mx-auto max-w-5xl">
             <FadeUp className="mb-10 text-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">Inside the template</p>
-              <h2 className="mt-2 text-2xl font-semibold text-zinc-50 sm:text-3xl">Modules buyers expect</h2>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">For developers</p>
+              <h2 className="mt-2 text-2xl font-semibold text-zinc-50 sm:text-3xl">How the template is built</h2>
               <p className="mx-auto mt-2 max-w-lg text-sm text-zinc-500">
-                Dashboard overview, employee directory, org chart data, leave workflow UI, attendance grid, payslip
-                reader, recruiting pipeline, and settings — all wired to mock facades.
+                Ship-time ergonomics: typed mock data, async facades, and UI primitives you can extend or replace when
+                you connect a real HRIS or internal API.
               </p>
             </FadeUp>
             <div className="grid gap-4 md:grid-cols-3">
