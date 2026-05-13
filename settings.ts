@@ -13,12 +13,12 @@ export const settings = {
   pricing: {
     /** Shown as the small gradient label above the headline */
     productLabel: "Licensed seats",
-    basePricePerSeat: 19,
+    basePricePerSeat: 999,
     minSeats: 1,
     maxSeats: 40,
     /** Applied as: perMonth × (1 − yearlyDiscountPercent / 100) when yearly is on */
     yearlyDiscountPercent: 20,
-    currencySymbol: "$",
+    currencySymbol: "฿",
   },
 
   copy: {

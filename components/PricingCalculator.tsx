@@ -36,7 +36,7 @@ export function PricingCalculator({ variant = "full" }: PricingCalculatorProps) 
 
   const lo = Math.min(pricing.minSeats, pricing.maxSeats)
   const hi = Math.max(pricing.minSeats, pricing.maxSeats)
-  const initialSeats = Math.min(hi, Math.max(lo, Math.ceil((lo + hi) / 4)))
+  const initialSeats = lo
   const discountMultiplier = 1 - pricing.yearlyDiscountPercent / 100
   const initialRaw = initialSeats * pricing.basePricePerSeat
 

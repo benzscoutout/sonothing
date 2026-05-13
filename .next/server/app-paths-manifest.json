@@ -1,17 +1,9 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/attendance/page": "app/(dashboard)/attendance/page.js",
-  "/(dashboard)/leave/page": "app/(dashboard)/leave/page.js",
-  "/(dashboard)/employees/[id]/page": "app/(dashboard)/employees/[id]/page.js",
-  "/(dashboard)/employees/page": "app/(dashboard)/employees/page.js",
-  "/(dashboard)/organization/page": "app/(dashboard)/organization/page.js",
-  "/(dashboard)/payroll/[id]/page": "app/(dashboard)/payroll/[id]/page.js",
   "/(dashboard)/settings/page": "app/(dashboard)/settings/page.js",
-  "/(dashboard)/payroll/page": "app/(dashboard)/payroll/page.js",
+  "/(marketing)/pricing/page": "app/(marketing)/pricing/page.js",
   "/(dashboard)/recruiting/page": "app/(dashboard)/recruiting/page.js",
-  "/(marketing)/page": "app/(marketing)/page.js",
-  "/(marketing)/pricing/page": "app/(marketing)/pricing/page.js"
+  "/(dashboard)/payroll/page": "app/(dashboard)/payroll/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/employees/page": "app/(dashboard)/employees/page.js"
 }

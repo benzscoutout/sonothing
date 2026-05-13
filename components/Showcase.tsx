@@ -6,8 +6,9 @@ import * as React from "react"
 import { LivePricingPreview } from "@/components/LivePricingPreview"
 
 // ─── Replace with your actual LemonSqueezy checkout URL ───────────────────────
-const CHECKOUT_URL = "https://sonothing.lemonsqueezy.com/checkout/buy/your-product-id"
-const PRODUCT_PRICE = "$49"
+const CHECKOUT_URL =
+  "https://sonothing.lemonsqueezy.com/checkout/buy/8d6c3ec2-a8c3-4099-8a41-bb70e9c1849c"
+const PRODUCT_PRICE = "999 THB"
 const PRODUCT_NAME = "SaaS Pricing Calculator"
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

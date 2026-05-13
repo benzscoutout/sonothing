@@ -4,8 +4,9 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import * as React from "react"
 
-const CHECKOUT_URL = "https://sonothing.lemonsqueezy.com/checkout/buy/your-product-id"
-const PRODUCT_PRICE = "$79"
+const CHECKOUT_URL =
+  "https://sonothing.lemonsqueezy.com/checkout/buy/8d6c3ec2-a8c3-4099-8a41-bb70e9c1849c"
+const PRODUCT_PRICE = "999 THB"
 const PRODUCT_NAME = "SoNothing HRM Admin Template"
 
 const dashboardBullets = [
