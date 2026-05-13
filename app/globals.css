@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  min-height: 100vh;
+  font-family: var(--font-geist-sans), Inter, system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .hero-glow-text {
+    text-shadow:
+      0 0 42px rgba(34, 211, 238, 0.22),
+      0 0 88px rgba(168, 85, 247, 0.14),
+      0 0 120px rgba(250, 250, 250, 0.06);
+  }
+}
