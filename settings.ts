@@ -1,31 +1,31 @@
 /**
  * Single source of truth for marketing copy, pricing math, motion tuning, and theme.
- * Edit values here — the Pricing Calculator reads everything from this file.
+ * The pricing calculator and landing page read from this file.
  */
 
 export const settings = {
   meta: {
-    title: "Premium Web Assets — Modern Startup Templates",
+    title: "SoNothing HRM — Next.js Admin Template (Mock Data)",
     description:
-      "High-performance React & Next.js templates with Framer Motion — including an interactive SaaS pricing calculator.",
+      "Sellable HR admin UI for Next.js 14: employees, leave, attendance, payroll, recruiting — powered by typed mock facades you can swap for a real API.",
   },
 
   pricing: {
     /** Shown as the small gradient label above the headline */
-    productLabel: "Team seats",
-    basePricePerSeat: 12,
+    productLabel: "Licensed seats",
+    basePricePerSeat: 19,
     minSeats: 1,
-    maxSeats: 50,
+    maxSeats: 40,
     /** Applied as: perMonth × (1 − yearlyDiscountPercent / 100) when yearly is on */
     yearlyDiscountPercent: 20,
     currencySymbol: "$",
   },
 
   copy: {
-    headline: "Estimate your bill",
+    headline: "Estimate your template license",
     /** `{discount}` is replaced with `pricing.yearlyDiscountPercent` */
     subheadTemplate:
-      "Drag to set seats. Toggle yearly for {discount}% off.",
+      "Drag to set seats for your studio. Toggle yearly for {discount}% off.",
     seatsLabel: "Seats",
     perMonthCaption: "Per month",
     /** `{discount}` → yearly discount percent */
@@ -60,12 +60,12 @@ export const settings = {
   },
 
   features: {
-    sectionTitle: "Included at every tier",
+    sectionTitle: "Ship faster on your stack",
     items: [
-      "Unlimited projects & API access",
-      "Priority chat & email support",
-      "SOC2-ready infrastructure",
-      "Custom SSO & audit logs (50+ seats)",
+      "Mock API facades in `lib/mock-api` — swap in REST or GraphQL",
+      "Dashboard shell with employees, leave, payroll, recruiting",
+      "Framer Motion + Tailwind polish tuned for template demos",
+      "Lemon Squeezy ready — `npm run build` passes out of the box",
     ],
   },
 

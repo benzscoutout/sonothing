@@ -1,1 +1,4 @@
 node_modules
+
+# Next.js build output (delete and rebuild if dev server shows missing chunk errors)
+.next

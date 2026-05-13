@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SoNothing HRM — Next.js admin template (mock data)
 
-## Getting Started
+Production-style HR admin UI built for **template resale** (for example on [Lemon Squeezy](https://lemonsqueezy.com)). There is **no backend**: domain data lives in typed seeds under `lib/mock-data`, and every read goes through async facades in `lib/mock-api` so you can replace them with `fetch` calls later.
 
-First, run the development server:
+## Stack
+
+- Next.js 14 (App Router)
+- React 18 + TypeScript
+- Tailwind CSS
+- Framer Motion
+
+## Scripts
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) for the marketing landing, use **Live demo** to reach the mock sign-in, or go directly to [http://localhost:3000/login](http://localhost:3000/login).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Folder map
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Path | Purpose |
+|------|---------|
+| [app/(marketing)](app/(marketing)) | Landing (`/`) and pricing calculator (`/pricing`) |
+| [app/(auth)](app/(auth)) | Demo login shell (`/login`) — any credentials |
+| [app/(dashboard)](app/(dashboard)) | HRM app routes: `/dashboard`, `/employees`, `/leave`, … |
+| [lib/mock-data](lib/mock-data) | Types + static seed arrays |
+| [lib/mock-api](lib/mock-api) | Async facades + `delay()` for realistic loading states |
+| [components/dashboard](components/dashboard) | Sidebar, top bar, shell |
+| [components/ui](components/ui) | Small Tailwind primitives |
+| [components/hrm](components/hrm) | Feature sections with client-side demo state |
+| [settings.ts](settings.ts) | Marketing + pricing calculator copy |
 
-## Learn More
+## Replacing mocks with a real API
 
-To learn more about Next.js, take a look at the following resources:
+1. Keep route components thin: they should call functions from `lib/mock-api`.
+2. Implement the same function signatures against your HTTP client.
+3. Move shared DTO types to a neutral module (for example `lib/types/hrm.ts`) if both client and server need them.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Interactive demos (leave request form, attendance punches, recruiting stage changes, settings toggles) intentionally use **local React state or `sessionStorage`** so the template works offline. Wire those actions to mutations when you add a backend.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+See [LICENSE](LICENSE) for the commercial template terms shipped with this product.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Troubleshooting (dev server)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**“You cannot have two parallel pages that resolve to the same path” for `/(dashboard)/page` and `/(marketing)/page`.**  
+Only the marketing group should define `/`. Delete `app/(dashboard)/page.tsx` if it exists (a redirect there conflicts with `app/(marketing)/page.tsx`).
+
+**`Cannot find module './NNN.js'` or 404s on `/_next/static/...` after edits.**  
+Stop the dev server, remove the build cache, and start again:
+
+```bash
+rm -rf .next
+npm run dev
+```
